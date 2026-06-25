@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bezawit Kassahun | Portfolio Space</title>
+  <style>
+    /* --- CLEAN, PROFESSIONAL PORTFOLIO THEME --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #9bf866;
+      color: #1e293b;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #64748b;
+      margin-left: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      padding: 80px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .typing-container {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .typing-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+      color: #2563eb;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #475569;
+      margin-bottom: 30px;
+    }
+
+    .hero-image-wrapper {
+      flex-shrink: 0;
+    }
+
+    .profile-pic {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e2e8f0;
+    }
+
+    /* --- BUTTONS --- */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #2563eb;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid #2563eb;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: #2563eb;
+      border-color: #2563eb;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary:hover {
+      background: #f8fafc;
+      color: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      padding: 80px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2.section-heading {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    h2.section-heading span {
+      color: #2563eb;
+    }
+
+    /* --- SKILLS SECTION --- */
+    .skills-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .skills-card-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .skills-card-box h3 {
+      font-size: 1.3rem;
+      color: #0f172a;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-pill {
+      background: #ffffff;
+      color: #334155;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+      transition: all 0.2s;
+    }
+
+    .skill-pill:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+      background: #eff6ff;
+    }
+
+    /* --- TIMELINE --- */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-left: 30px;
+      border-left: 2px solid #e2e8f0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -37px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #2563eb;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.15rem;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content p {
+      color: #475569;
+    }
+
+    /* --- INTERACTIVE CONSOLE --- */
+    .interactive-box {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      border: 1px solid #e2e8f0;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-input-wrapper input {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-input-wrapper input:focus {
+      border-color: #2563eb;
+    }
+
+    .console-output {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: monospace;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 120px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: #334155;
+      border-radius: 4px;
+      height: 8px;
+      margin: 10px 0 15px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #38bdf8;
+      width: 0%;
+      transition: width 1s ease-in-out;
+    }
+
+    /* --- GRID & CARDS --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .project-card h3 {
+      font-size: 1.25rem;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: #475569;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .project-link {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* --- RESUME COMPONENT --- */
+    .resume-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .resume-column h3 {
+      font-size: 1.3rem;
+      color: #0f172a;
+      margin-bottom: 20px;
+      border-left: 3px solid #2563eb;
+      padding-left: 10px;
+    }
+
+    .resume-item {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .resume-item h4 {
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+
+    .resume-item .place {
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .resume-item p {
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    /* --- FLIP CARDS --- */
+    .flip-card {
+      background-color: transparent;
+      height: 180px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .flip-card-front {
+      background-color: #f8fafc;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
+    }
+
+    .flip-card-front h3 {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    .flip-card-back {
+      background-color: #2563eb;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-back p {
+      font-size: 0.95rem;
+    }
+
+    /* --- SPLIT VIEW --- */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .fact-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 600;
+    }
+
+    .dream-box {
+      background: #f0fdf4;
+      border: 2px dashed #bbf7d0;
+      padding: 40px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .dream-box p {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #166534;
+    }
+
+    /* --- CONTACT --- */
+    .contact-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 50px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 850px) {
+      .hero { flex-direction: column-reverse; text-align: center; }
+      .btn-group { justify-content: center; }
+      .split-layout, .resume-container, .skills-section-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">BEZA<span>WIT</span></div>
+    <nav>
+      <a href="#journey">My Journey</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm Bezawit 👋</h1>
+      
+      <div class="typing-container">
+        <span class="typing-text" id="typing"></span>
+      </div>
+
+      <p>
+        A Grade 11 student from Ethiopia driven by front-end engineering, student coordination, and innovative code creation.
+      </p>
+      
+      <div class="btn-group">
+        <a href="#contact" class="btn">Let's Connect</a>
+        <a href="#resume" class="btn secondary">View My Resume</a>
+      </div>
+    </div>
+    
+    <div class="hero-image-wrapper">
+      <img src="profile.png" alt="Bezawit" class="profile-pic" onerror="this.src='./pro'">
+    </div>
+  </section>
+
+  <section id="journey">
+    <h2 class="section-heading">My <span>Journey 📚</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>Started coding HTML & CSS</h4>
+          <p>Began exploring structural markup mechanics through independent online study.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>Elected Class Monitor</h4>
+          <p>Assumed organizational oversight roles over administrative workflows inside my secondary school classroom.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>Volunteering at Don Bosco</h4>
+          <p>Began coordinating after-school study tracks to tutor peers in standard software mechanics.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>2nd Place Science Fair Winner</h4>
+          <p>Successfully processed and developed organic biodegradable packaging alternatives at the city-wide level.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>Appointed IT Club Vice President</h4>
+          <p>Stepped up to lead tech events, organize study groups, and run technical development programs.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h4>School Platform Architecture</h4>
+          <p>Currently engineering a comprehensive portal system to host critical materials, tasks, and notifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEDICATED SKILLS PROFILE SECTION -->
+  <section id="skills">
+    <h2 class="section-heading">My <span>Skills Matrix 🛠️</span></h2>
+    <div class="skills-section-grid">
+      
+      <!-- Technical Skills Block -->
+      <div class="skills-card-box">
+        <h3>💻 Technical Skills</h3>
+        <div class="pills-container">
+          <span class="skill-pill">HTML5 </span>
+          <span class="skill-pill">CSS </span>
+          <span class="skill-pill">JavaScript (ES6 Core)</span>
+          <span class="skill-pill">Python Programming</span>
+          <span class="skill-pill">SQL </span>
+          <span class="skill-pill"> Git </span>
+          <span class="skill-pill">GitHub Deployment Workflows</span>
+        </div>
+      </div>
+
+      <!-- Soft Skills Block -->
+      <div class="skills-card-box">
+        <h3>🌟 Soft Skills</h3>
+        <div class="pills-container">
+          <span class="skill-pill">Team Leadership</span>
+          <span class="skill-pill">Public Speaking & Presenting</span>
+          <span class="skill-pill">Volunteer Teaching & Mentorship</span>
+          <span class="skill-pill">Strategic Problem Solving</span>
+          <span class="skill-pill">Classroom Organization</span>
+          <span class="skill-pill">Collaborative Communication</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-heading">Things I've <span>Built 🚀</span></h2>
+    
+    <div class="interactive-box">
+      <p style="margin-bottom: 15px; font-weight: 600; text-align: center; color: #475569;">
+        Type "What are you building now?" below to look into my database:
+      </p>
+      <div class="search-input-wrapper">
+        <input type="text" id="consoleQuery" placeholder="Type here..." autocomplete="off">
+        <button onclick="runConsole()" class="btn">Query</button>
+      </div>
+      
+      <div class="console-output" id="consoleDisplay">
+        // Awaiting prompt... Try typing: What are you building now?
+      </div>
+    </div>
+
+    <h3 style="font-size: 1.3rem; color: #0f172a; margin-bottom: 25px; font-weight: 700;">Other Projects 🧪</h3>
+    <div class="grid">
+      
+      <div class="project-card">
+        <h3>Smart Tax Calculator</h3>
+        <p>A computational platform designed using vanilla JavaScript structures to evaluate local tax and multi-tier transaction fee allocations accurately.</p>
+        <div class="tech-tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+        </div>
+        <a href="https://github.com/beza-kd" target="_blank" class="project-link">Try App →</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Ethiopian Calendar Converter</h3>
+        <p>An algorithmic engine built to convert dates back and forth between Gregorian and Ethiopian tracking systems.</p>
+        <div class="tech-tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS Logic</span>
+        </div>
+        <a href="https://github.com/beza-kd" target="_blank" class="project-link">View Code →</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Mini Apps Playground</h3>
+        <p>A fast, functional pack containing an interactive quiz module, structured calculator, and a dynamic tracking card utility.</p>
+        <div class="tech-tags">
+          <span class="tag">DOM Manipulation</span><span class="tag">UI Design</span>
+        </div>
+        <a href="https://github.com/beza-kd" target="_blank" class="project-link">Explore →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="resume">
+    <h2 class="section-heading">My <span>Resume 🗺️</span></h2>
+    
+    <div class="resume-container">
+      <div class="resume-column">
+        <h3>Leadership & Roles</h3>
+        
+        <div class="resume-item">
+          <h4>Vice President</h4>
+          <div class="place">Don Bosco IT Club</div>
+          <p>Organizing weekly programming labs, tech club showcases, and managing peer group development workflows.</p>
+        </div>
+
+        <div class="resume-item">
+          <h4>Volunteer Teacher</h4>
+          <div class="place">Bosco Community Centers</div>
+          <p>Tutoring younger student profiles on structural styling guidelines and programmatic logic execution models.</p>
+        </div>
+
+        <div class="resume-item">
+          <h4>Class Monitor</h4>
+          <div class="place">Don Bosco High School (2 Years)</div>
+          <p>Serving as the core operational communication bridge between the class body and administrative staff.</p>
+        </div>
+      </div>
+
+      <div class="resume-column">
+        <h3>Verified Credentials</h3>
+        
+        <div class="resume-item">
+          <h4>Programming Fundamentals</h4>
+          <div class="place">5 Million Coders – Fundamental Programming</div>
+          <p>Completed official baseline software training covering logical execution paths and code structures.</p>
+        </div>
+
+        <div class="resume-item">
+          <h4>Advanced Git & Python</h4>
+          <div class="place">DataCamp Certifications</div>
+          <p>Passed validation matrices for data structures, terminal environment logic, and repository version management.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="#" class="btn" onclick="alert('Your full profile layout matrix is cleanly mapped directly inside this page code!'); return false;">Download Printable CV</a>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2 class="section-heading">Cool <span>Milestones 🏆</span></h2>
+    <div class="grid">
+      
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span style="font-size: 2.2rem;">🏆</span>
+            <h3>Science Fair Medalist</h3>
+          </div>
+          <div class="flip-card-back">
+            <p>Won 2nd Place at the city level for a biodegradable material project built from scratch.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span style="font-size: 2.2rem;">👩‍💻</span>
+            <h3>Udacity Graduate</h3>
+          </div>
+          <div class="flip-card-back">
+            <p>Verified certification in programming fundamentals and engineering logic paths.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span style="font-size: 2.2rem;">🎖️</span>
+            <h3>IT Club VP Award</h3>
+          </div>
+          <div class="flip-card-back">
+            <p>Recognized by leadership for structural contributions and teaching web technologies to younger cohorts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <span style="font-size: 2.2rem;">📊</span>
+            <h3>DataCamp Credentials</h3>
+          </div>
+          <div class="flip-card-back">
+            <p>Earned certified data masteries across functional environments like Git, Python, and SQL.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="dreams">
+    <div class="split-layout">
+      <div>
+        <h2 class="section-heading" style="text-align: left; margin-bottom: 25px;">Fun Facts <span>About Me ✨</span></h2>
+        <div class="fact-box"><span>♟️</span> I enjoy tactical chess problems</div>
+        <div class="fact-box"><span>🎨</span> Responsive Web Design Scholar (FreeCodeCamp)</div>
+        <div class="fact-box"><span>⚽</span> Currently diving deep into algorithm structures</div>
+        <div class="fact-box"><span>🌍</span> Experienced in theatrical stage production tracks</div>
+      </div>
+      
+      <div>
+        <h2 class="section-heading" style="text-align: left; margin-bottom: 25px;">My <span>Dream 💭</span></h2>
+        <div class="dream-box">
+          <p>
+            "I want to study Software Engineering and build technology that helps students learn better and creates opportunities for young people in my community."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <h2 class="section-heading" style="margin-bottom: 15px;">Say <span>Hello! 👋</span></h2>
+      <p style="margin-bottom: 30px; color: #475569; font-weight: 500; font-size: 1.05rem;">
+        Want to talk about frontend web design, computer science fields, or collaborative club setups?
+      </p>
+      <div class="btn-group" style="justify-content: center;">
+        <button onclick="copyEmail()" id="copyBtn" class="btn">witbeza44@gmail.com</button>
+        <a href="https://www.linkedin.com/in/bezawit-kassahun-20723240a/" target="_blank" class="btn secondary">LinkedIn Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026       Bezawit Kassahun.</p>
+  </footer>
+
+  <script>
+    const phrases = ["🚀 Future Software Engineer", "💻 Frontend Web Developer", "🎓 Peer Volunteer Tutor"];
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const targetElement = document.getElementById("typing");
+
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIdx];
+      
+      if (!isDeleting) {
+        targetElement.textContent = currentPhrase.substring(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 2200);
+          return;
+        }
+      } else {
+        targetElement.textContent = currentPhrase.substring(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+        }
+      }
+      setTimeout(typeLoop, isDeleting ? 30 : 80);
+    }
+    typeLoop();
+
+    function runConsole() {
+      const input = document.getElementById("consoleQuery").value.trim().toLowerCase();
+      const output = document.getElementById("consoleDisplay");
+      
+      if (input.includes("building") || input.includes("what are you building now")) {
+        output.innerHTML = `
+          <strong>🌐 Portal Architecture: School Website Project</strong><br>
+          <div class="progress-bar"><div class="progress-fill" id="fillBar"></div></div>
+          <span>Execution Matrix Status: 80% Complete</span><br><br>
+          <strong>Current Focus Modules:</strong><br>
+          ⚡ JavaScript UI Integration<br>
+          📦 Version Control & Repos<br>
+          📱 Fluid Mobile Grid Breakpoints
+        `;
+        setTimeout(() => {
+          document.getElementById("fillBar").style.width = "80%";
+        }, 100);
+      } else {
+        output.innerHTML = `// Unknown parameter error. Try running the default expression: "What are you building now?"`;
+      }
+    }
+
+    function copyEmail() {
+      const email = "witbeza44@gmail.com";
+      const btn = document.getElementById("copyBtn");
+
+      navigator.clipboard.writeText(email).then(() => {
+        btn.textContent = "Copied Success! 📋";
+        btn.style.background = "#16a34a";
+        btn.style.borderColor = "#16a34a";
+
+        setTimeout(() => {
+          btn.textContent = "witbeza44@gmail.com";
+          btn.style.background = "#2563eb";
+          btn.style.borderColor = "#2563eb";
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
