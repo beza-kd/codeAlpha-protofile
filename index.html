@@ -121,7 +121,9 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 12px 28px;
       background: #2563eb;
       color: #ffffff;
@@ -517,6 +519,77 @@
       border-top: 1px solid #e2e8f0;
     }
 
+    /* --- GLOSSY OVERLAY LIGHTBOX --- */
+    .lightbox-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .lightbox-shell {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 750px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2rem;
+      color: #64748b;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .lightbox-close-btn:hover {
+      color: #ef4444;
+    }
+
+    .lightbox-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+
+    .lightbox-viewer-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .lightbox-image-node {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #cbd5e1;
+    }
+
     @keyframes blink {
       50% { opacity: 0; }
     }
@@ -556,12 +629,13 @@
       
       <div class="btn-group">
         <a href="#contact" class="btn">Let's Connect</a>
-        <a href="#resume" class="btn secondary">View My Resume</a>
+        <!-- Updated to trigger the dynamic image lightbox popup -->
+        <button onclick="viewResumeImage()" class="btn secondary">View My Resume</button>
       </div>
     </div>
     
     <div class="hero-image-wrapper">
-      <img src="profile.png" alt="Bezawit" class="profile-pic" onerror="this.src='./pro'">
+      <img src="profile.png" alt="Bezawit" class="profile-pic" onerror="this.src='https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=500&q=80'">
     </div>
   </section>
 
@@ -735,8 +809,15 @@
       </div>
     </div>
 
+    <!-- RESTRUCTURED CV DOWNLOAD TO DISPLAY PDF DIRECTLY AS IMAGE PAGES -->
     <div style="text-align: center; margin-top: 40px;">
-      <a href="#" class="btn" onclick="alert('Your full profile layout matrix is cleanly mapped directly inside this page code!'); return false;">Download Printable CV</a>
+      <button onclick="viewResumeImage()" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        </svg>
+        View Printable CV (PDF)
+      </button>
     </div>
   </section>
 
@@ -793,6 +874,16 @@
       </div>
 
     </div>
+
+    <!-- NEW INTERACTIVE PORTFOLIO CERTIFICATE ACTION (PRESERVING STYLING EXACTLY) -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button onclick="viewCertificateImages()" class="btn secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        View Complete Certificates Portfolio (PDF)
+      </button>
+    </div>
   </section>
 
   <section id="dreams">
@@ -830,8 +921,19 @@
   </section>
 
   <footer>
-    <p>&copy; 2026       Bezawit Kassahun.</p>
+    <p>&copy; 2026 Bezawit Kassahun.</p>
   </footer>
+
+  <!-- DYNAMIC IMAGE PORTFOLIO VIEWER LIGHTBOX MODAL -->
+  <div class="lightbox-backdrop" id="custom-lightbox" onclick="dismissLightbox(event)">
+    <div class="lightbox-shell">
+      <button class="lightbox-close-btn" onclick="closeLightboxModal()">&times;</button>
+      <div class="lightbox-title" id="lightbox-heading">Document Viewer</div>
+      <div class="lightbox-viewer-pane" id="lightbox-content-pane">
+        <!-- Visual document node components load programmatically here -->
+      </div>
+    </div>
+  </div>
 
   <script>
     const phrases = ["🚀 Future Software Engineer", "💻 Frontend Web Developer", "🎓 Peer Volunteer Tutor"];
@@ -900,6 +1002,43 @@
           btn.style.borderColor = "#2563eb";
         }, 2000);
       });
+    }
+
+    /* --- DYNAMIC VISUAL IMAGE LIGHTBOX VIEWER MATRIX --- */
+    const lightboxBackdrop = document.getElementById('custom-lightbox');
+    const lightboxHeading = document.getElementById('lightbox-heading');
+    const contentPane = document.getElementById('lightbox-content-pane');
+
+    // Display Resume Page images directly
+    function viewResumeImage() {
+      lightboxHeading.textContent = "My Professional CV";
+      contentPane.innerHTML = `
+        <img class="lightbox-image-node" src="ChatGPT Image Jul 1, 2026, 12_35_56 AM.png" alt="Resume Page" onerror="this.src='https://placehold.co/600x850/2563eb/ffffff?text=ChatGPT+Image+Jul+1,+2026,+12_35_56+AM.png+Not+Uploaded+Yet'">
+      `;
+      lightboxBackdrop.style.display = "flex";
+    }
+
+    // Display all certificate portfolio pages sequentially
+    function viewCertificateImages() {
+      lightboxHeading.textContent = "My Credentials Portfolio";
+      contentPane.innerHTML = `
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px; text-align: center;">Scroll down to view all certificates</p>
+        <img class="lightbox-image-node" src="photo_2026-06-19_01-06-49.jpg" alt="ALX Wellness Hackathon" onerror="this.src='https://placehold.co/600x400/1e293b/fbbf24?text=ALX+Wellness+Hackathon'">
+        <img class="lightbox-image-node" src="photo_2026-06-04_18-56-45.jpg" alt="Don Bosco Science and Technology Club" onerror="this.src='https://placehold.co/600x400/1e293b/fbbf24?text=Don+Bosco+Science+Club'">
+        <img class="lightbox-image-node" src="photo_2026-06-15_19-20-44.jpg" alt="DataCamp Introduction to Python" onerror="this.src='https://placehold.co/600x400/1e293b/fbbf24?text=DataCamp+Python'">
+        <img class="lightbox-image-node" src="ict club certificate.jpg" alt="Don Bosco ICT Club Contribution" onerror="this.src='https://placehold.co/600x400/1e293b/fbbf24?text=Don+Bosco+ICT+Club'">
+      `;
+      lightboxBackdrop.style.display = "flex";
+    }
+
+    function closeLightboxModal() {
+      lightboxBackdrop.style.display = "none";
+    }
+
+    function dismissLightbox(event) {
+      if (event.target === lightboxBackdrop) {
+        closeLightboxModal();
+      }
     }
   </script>
 
